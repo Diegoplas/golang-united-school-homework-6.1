@@ -1,4 +1,4 @@
-package main
+package golang_united_school_homework
 
 const pi = 3.1415926535
 

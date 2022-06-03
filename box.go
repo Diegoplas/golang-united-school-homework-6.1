@@ -1,4 +1,4 @@
-package main
+package golang_united_school_homework
 
 import (
 	"errors"
@@ -113,19 +113,4 @@ func (b *box) RemoveAllCircles() error {
 	}
 	b.shapes = noCircleShapes
 	return nil
-}
-
-func main() {
-	n := NewBox(4)
-	c2 := Circle{2}
-	c3 := Circle{3}
-	s1 := Rectangle{5, 6}
-	c4 := Circle{4}
-	n.AddShape(c2)
-	n.AddShape(c3)
-	n.AddShape(c4)
-	n.AddShape(s1)
-	fmt.Println(n.shapes)
-	n.RemoveAllCircles()
-	fmt.Println(n.shapes)
 }
