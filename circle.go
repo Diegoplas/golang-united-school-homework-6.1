@@ -1,6 +1,6 @@
 package golang_united_school_homework
 
-const pi = 3.142
+const pi = 3.14159265
 
 // Circle must satisfy to Shape interface
 type Circle struct {
