@@ -1,4 +1,4 @@
-package golang_united_school_homework
+package main
 
 type Shape interface {
 	// CalcPerimeter returns calculation result of perimeter

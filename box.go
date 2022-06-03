@@ -1,4 +1,4 @@
-package golang_united_school_homework
+package main
 
 import (
 	"errors"
@@ -67,8 +67,9 @@ func (b *box) ExtractByIndex(i int) (Shape, error) {
 func (b *box) ReplaceByIndex(i int, shape Shape) (Shape, error) {
 	lastIndex := len(b.shapes) - 1
 	if i <= lastIndex {
+		removedShape := b.shapes[i]
 		b.shapes[i] = shape
-		return b.shapes[i], nil
+		return removedShape, nil
 	} else {
 		return nil, &ValidIndexError{}
 	}
@@ -106,10 +107,25 @@ func (b *box) RemoveAllCircles() error {
 		default:
 			noCircleShapes = append(noCircleShapes, shape)
 		}
-		if !areCircles {
-			return errors.New("no circles to remove")
-		}
+	}
+	if !areCircles {
+		return errors.New("no circles to remove")
 	}
 	b.shapes = noCircleShapes
 	return nil
+}
+
+func main() {
+	n := NewBox(4)
+	c2 := Circle{2}
+	c3 := Circle{3}
+	s1 := Rectangle{5, 6}
+	c4 := Circle{4}
+	n.AddShape(c2)
+	n.AddShape(c3)
+	n.AddShape(c4)
+	n.AddShape(s1)
+	fmt.Println(n.shapes)
+	n.RemoveAllCircles()
+	fmt.Println(n.shapes)
 }

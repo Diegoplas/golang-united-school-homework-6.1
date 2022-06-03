@@ -1,4 +1,4 @@
-package golang_united_school_homework
+package main
 
 // Rectangle must satisfy to Shape interface
 type Rectangle struct {
