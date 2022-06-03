@@ -5,6 +5,12 @@ import (
 	"fmt"
 )
 
+type ValidIndexError struct{}
+
+func (m *ValidIndexError) Error() string {
+	return "please insert a valid index"
+}
+
 // box contains list of shapes and able to perform operations on them
 type box struct {
 	shapes         []Shape
@@ -38,7 +44,7 @@ func (b *box) GetByIndex(i int) (Shape, error) {
 		fmt.Println("Got Shape: ", b.shapes[i])
 		return b.shapes[i], nil
 	} else {
-		return nil, errors.New("please return a valid index")
+		return nil, &ValidIndexError{}
 	}
 }
 
@@ -51,7 +57,7 @@ func (b *box) ExtractByIndex(i int) (Shape, error) {
 		b.shapes = append(b.shapes[:i], b.shapes[i+1:]...)
 		return removedShape, nil
 	} else {
-		return nil, errors.New("please return a valid index")
+		return nil, &ValidIndexError{}
 	}
 
 }
@@ -64,7 +70,7 @@ func (b *box) ReplaceByIndex(i int, shape Shape) (Shape, error) {
 		b.shapes[i] = shape
 		return b.shapes[i], nil
 	} else {
-		return nil, errors.New("please return a valid index")
+		return nil, &ValidIndexError{}
 	}
 }
 
