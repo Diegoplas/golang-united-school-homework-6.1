@@ -7,7 +7,7 @@ type Rectangle struct {
 
 // CalcPerimeter returns calculation result of perimeter
 func (r Rectangle) CalcPerimeter() float64 {
-	rectanglePerim := 2 * (r.Height + r.Weight)
+	rectanglePerim := 2*r.Height + 2*r.Weight
 	return rectanglePerim
 }
 
