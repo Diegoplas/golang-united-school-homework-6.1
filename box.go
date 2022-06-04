@@ -3,6 +3,7 @@ package golang_united_school_homework
 import (
 	"errors"
 	"fmt"
+	"reflect"
 )
 
 type ValidIndexError struct{}
@@ -98,23 +99,18 @@ func (b *box) SumArea() float64 {
 // whether circles are not exist in the list, then returns an error
 func (b *box) RemoveAllCircles() error {
 	circles := 0
-	noCircleShapes := []Shape{}
-	for _, shape := range b.shapes {
-		switch shape.(type) {
-		case Circle:
-			fmt.Println("Corcñe")
+	//noCircleShapes := []Shape{}
+	for idx := 0; idx < len(b.shapes); idx++ {
+		if reflect.TypeOf(b.shapes[idx]) == reflect.TypeOf(Circle{}) {
+			copy(b.shapes[idx:], b.shapes[idx+1:])
+			b.shapes = b.shapes[:len(b.shapes)-1]
 			circles += 1
-		case Triangle:
-			fmt.Println("Triangle")
-			noCircleShapes = append(noCircleShapes, shape)
-		case Rectangle:
-			fmt.Println("Rectangle")
-			noCircleShapes = append(noCircleShapes, shape)
+			idx = idx - 1
 		}
 	}
 	if circles == 0 {
 		return errors.New("no circles to remove")
 	}
-	b.shapes = noCircleShapes
+	//b.shapes = noCircleShapes
 	return nil
 }
