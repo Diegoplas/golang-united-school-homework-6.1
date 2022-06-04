@@ -102,12 +102,17 @@ func (b *box) RemoveAllCircles() error {
 	for _, shape := range b.shapes {
 		switch shape.(type) {
 		case Circle:
+			fmt.Println("Corcñe")
 			circles += 1
-		default:
+		case Triangle:
+			fmt.Println("Triangle")
+			noCircleShapes = append(noCircleShapes, shape)
+		case Rectangle:
+			fmt.Println("Rectangle")
 			noCircleShapes = append(noCircleShapes, shape)
 		}
 	}
-	if circles > 0 {
+	if circles == 0 {
 		return errors.New("no circles to remove")
 	}
 	b.shapes = noCircleShapes
